@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    iframe {
+        display: block;
+        border: none;
+        height: calc(100vh - 30px);
+        width: 100%;
+    }
+    
+    body {
+        background-color: #2196F3;
+    }
+
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <base onclick='window.open();'>
+    <title>startpage.apower</title>
+</head>
+
+<body>
+    <!--    /* Scripts */-->
+    <script>
+        window.onkeyup = keyup;
+        window.onkeydown = keydown;
+        var keys = {
+            enter: false,
+            ctrl: false
+        };
+
+        function keydown(e) {
+            if (e.keyCode == 46) { // Backspace or DEL
+                event.preventDefault();
+                document.getElementById('search_box').value = document.getElementById('search_box').defaultValue;
+                document.activeElement.blur()
+            } else {
+                document.getElementById('search_box').focus();
+            }
+            if (event.keyCode == 13) { //detect ctrl + enter
+                keys["enter"] = true;
+            } else if (event.keyCode == 17) {
+                keys["ctrl"] = true;
+            }
+        }
+
+        function keyup(e) {
+            if (e.keyCode == 13) { //Enter
+                if (document.getElementById("search_box").value != "") {
+                    document.getElementById("div_links").style.display = 'none';
+                    document.getElementById("search_result").style.display = 'block';
+                    document.getElementById("search_result1").src = "https://duckduckgo.com/?q=" + document.getElementById("search_box").value;
+                    document.getElementById("search_result2").src = "https://www.qwant.com/?q=" + document.getElementById("search_box").value;
+                    document.getElementById("search_result3").src = "https://oscobo.co.uk/search.php?q=" + document.getElementById("search_box").value;
+                    document.getElementById("search_result4").src = "https://www.ixquick.com/do/dsearch?query=" + document.getElementById("search_box").value + "&cat=web&pl=opensearch&language=english";
+                    document.getElementById("search_result5").src = "https://infogalactic.com/info/" + document.getElementById("search_box").value;
+
+                    //Display ctrl + enter tip/warning
+                    document.getElementById('ratsit').innerHTML = '<br>*Only searched when using ctrl + enter';
+                    document.getElementById('hitta').innerHTML = '<br>*Only searched when using ctrl + enter';
+
+                    if (keys["enter"] && keys["ctrl"]) { //Only load these searches when Ctrl + Enter is pressed when searching
+
+                        //First restore the div(Just incase they got removed before)
+                        document.getElementById('ratsit').innerHTML = '<iframe id="search_result6" src="about:Blank"> </iframe>';
+                        document.getElementById('hitta').innerHTML = '<iframe id="search_result7" src="about:Blank"> </iframe>';
+
+                        document.getElementById("search_result6").src = "https://www.ratsit.se/sok/person?vem=" + document.getElementById("search_box").value + "&var=&m=1&k=1&r=1&er=1&b=1&eb=1&amin=&amax=&fon=1";
+                        document.getElementById("search_result7").src = "https://www.hitta.se/sök?vad=" + document.getElementById("search_box").value;
+                    }
+                    //window.location = "https://duckduckgo.com/?q=" + document.getElementById("search_box").value;
+                } else {
+                    return
+                }
+
+            }
+            if (e.keyCode == 27) { //ESC Key
+                openSearch('duck'); //Get ready for new search
+                document.getElementById("search_result").style.display = 'none';
+                document.getElementById("div_links").style.display = 'block';
+                document.getElementById("search_result").src = "about:blank"
+                document.getElementById('search_box').value = document.getElementById('search_box').defaultValue;
+                document.activeElement.blur()
+            }
+            //Reset ctrl + enter
+            keys["enter"] = false;
+            keys["ctrl"] = false;
+        }
+
+        function myDrop() {
+            var x = document.getElementById("Demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        function openSearch(searchEngineName) {
+            var i;
+            var x = document.getElementsByClassName("searchEngine");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(searchEngineName).style.display = "block";
+        }
+
+    </script>
+
+    <!--    /*End of scripts*/-->
+
+
+
+    <div class="w3-bar w3-blue w3-large">
+        <a href="javascript:window.location.reload(true)" class="w3-bar-item w3-button w3-blue w3-hover-opacity"><i class="fa fa-home"></i></a>
+        <a href="https://mail.google.com/mail/u/0/" class="w3-bar-item w3-button w3-button w3-hover-opacity"><i class="fa fa-envelope"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-button w3-hover-opacity"><i class="fa fa-globe"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-button w3-hover-opacity"><i class="fa fa-sign-in"></i></a>
+
+        <div class="w3-dropdown-click">
+            <button onclick="myDrop()" class="w3-button"></button>
+            <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
+                <a href="https://www.hidden.com/" class="w3-bar-item w3-button">Hidden</a>
+                <a href="https://www.hidden2.com/" class="w3-bar-item w3-button">Hidden2</a>
+            </div>
+        </div>
+    </div>
+
+    <!--Logo-->
+    <!--SearchBox-->
+    <div class="w3-responsive w3-blue w3">
+        <div class="w3-third">
+            <br>
+        </div>
+        <div class="w3-third">
+            <center>
+                <h1 class="w3-text-white" style="text-shadow:1px 1px 0 #444">
+            <b>startpage.apower.se</b></h1>
+                <input class="w3-input w3-border" type="text" style="width:80%" placeholder="Search..." id="search_box" maxlength="256">
+            </center>
+        </div>
+        <div class="w3-third">
+            <br>
+        </div>
+    </div>
+
+    <!--Links Row1-->
+    <div class "w3-container" id="div_links">
+        <div class="w3-cell-row w3-wide">
+
+            <div class="w3-container w3-red w3-cell w3-mobile">
+                <center>
+                    <h2>Social</h2></center>
+                <div class="w3-bar-block">
+                    <a href="https://www.youtube.com" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Youtube</a></a>
+                    <a href="https://www.facebook.com/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Facebook</a></a>
+
+                    <a href="https://www.messenger.com/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Messenger</a></a>
+
+                    <a href="https://www.gamingtribe.com" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">GamingTribe</a></a>
+
+                    <center>
+                        <h2>My Links</h2></center>
+
+                    <a href="https://vid.me/apower" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">vid.me</a></a>
+
+                    <a href="https://youtube.com/apowerse" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Youtube</a></a>
+
+                    <a href="http://yolotu.be" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Yolotu.be</a></a>
+                </div>
+
+            </div>
+
+            <div class="w3-container w3-teal w3-cell w3-mobile">
+                <center>
+                    <h2>Shopping</h2></center>
+                <div class="w3-bar-block">
+                    <a href="https://www.aliexpress.com/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">AliExpress</a></a>
+
+                    <a href="https://www.ebay.com/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">eBay</a></a>
+
+                    <a href="https://prisjakt.nu" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Prisjakt</a></a>
+
+                    <a href="https://cdon.se" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Cdon</a></a>
+
+                    <center>
+                        <h2>Misc</h2></center>
+                    <a href="https://wiki.installgentoo.com/index.php/Chink_shit_general" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">CSG</a></a>
+
+                    <a href="https://cock.li/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Cock.li</a></a>
+
+                    <a href="https://example.com" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Example</a></a>
+                </div>
+            </div>
+            <div class="w3-container w3-indigo w3-cell w3-mobile">
+                <center>
+                    <h2>Trackers</h2></center>
+                <div class="w3-bar-block">
+                    <a href="https://iptorrents.com/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">IPT</a></a>
+
+                    <a href="http://jpopsuki.eu/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">jPopsuki</a></a>
+
+                    <a href="https://avistaz.to/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">AvistaZ</a></a>
+
+                    <a href="https://animetorrents.me/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Anime.me</a></a>
+
+                    <center>
+                        <h2>Dev</h2></center>
+
+                    <a href="https://codepen.io/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">CodePen</a></a>
+
+                    <a href="https://stackoverflow.com/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">Stackoverflow</a></a>
+
+                    <a href="https://www.w3schools.com" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">w3</a></a>
+                </div>
+            </div>
+
+            <div class="w3-container w3-green w3-cell w3-mobile">
+                <center>
+                    <h2>4chan</h2></center>
+                <div class="w3-bar-block">
+
+                    <a href="http://boards.4chan.org/g/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">/g/</a></a>
+
+                    <a href="http://boards.4chan.org/diy/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">/diy/</a></a>
+
+                    <a href="http://boards.4chan.org/out/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">/out/</a></a>
+
+                    <a href="http://boards.4chan.org/pol/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">/pol/</a></a>
+
+                    <a href="http://boards.4chan.org/ck/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">/ck/</a></a>
+
+                    <a href="http://boards.4chan.org/r9k/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">/r9k/</a></a>
+
+                    <a href="http://boards.4chan.org/k/" class="w3-bar-item w3-button w3-hover-white w3-padding-5 w3-center">/k/</a></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--iFrame Search Results-->
+    <div class="w3-container w3-blue" id="search_result" style="display:none">
+
+
+        <div class="w3-bar w3-blue">
+            <button class="w3-bar-item w3-button w3-hover-light-blue" onclick="openSearch('duck')">DuckDuckGo</button>
+            <button class="w3-bar-item w3-button w3-hover-light-blue" onclick="openSearch('ixquick')">Ixquick</button>
+            <button class="w3-bar-item w3-button w3-hover-light-blue" onclick="openSearch('qwant')">Qwant</button>
+            <button class="w3-bar-item w3-button w3-hover-light-blue" onclick="openSearch('oscobo')">Oscobo</button>
+            <button class="w3-bar-item w3-button w3-hover-light-blue" onclick="openSearch('infogalactic')">Infogalactic</button>
+            <button class="w3-bar-item w3-button w3-red w3-hover-pink" onclick="openSearch('ratsit')">Ratsit</button>
+            <button class="w3-bar-item w3-button w3-red w3-hover-pink" onclick="openSearch('hitta')">Hitta.se</button>
+
+
+        </div>
+        <div id="duck" class="searchEngine">
+            <iframe id="search_result1" src="about:Blank"> </iframe>
+        </div>
+        <div id="ixquick" class="searchEngine" style="display:none">
+            <iframe id="search_result4" src="about:Blank"> </iframe>
+        </div>
+        <div id="qwant" class="searchEngine" style="display:none">
+            <iframe id="search_result2" src="about:Blank"> </iframe>
+        </div>
+
+        <div id="oscobo" class="searchEngine" style="display:none">
+            <iframe id="search_result3" src="about:Blank"> </iframe>
+        </div>
+        <div id="infogalactic" class="searchEngine" style="display:none">
+            <iframe id="search_result5" src="about:Blank"> </iframe>
+        </div>
+        <div id="ratsit" class="searchEngine" style="display:none">
+            <iframe id="search_result6" src="about:Blank"> </iframe>
+
+        </div>
+        <div id="hitta" class="searchEngine" style="display:none">
+            <iframe id="search_result7" src="about:Blank"> </iframe>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
