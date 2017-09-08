@@ -5,11 +5,17 @@ The code should be quite easy to understand.
 
 Feel free to use and edit. 
 
-Writen by Apower
+Demo: http://startpage.apower.se/
+
+## Written by Apower
 
 http://Apower.se 
-https://github.com/Apowerse
+
 https://vid.me/apower
 
-Want to donate? Send to:
-Paypal: apowerdev@outlook.com
+
+
+## Want to donate? 
+
+Send to Paypal: apowerdev@outlook.com
+
