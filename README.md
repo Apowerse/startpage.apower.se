@@ -17,7 +17,7 @@
  If you want to use it on its own locally just link the local path to new page/home page in browser.
  e.g file:///C:/Startpage/index.html
 
- +Demo: https://apower.se/files/startpage/
+ Demo: https://apower.se/files/startpage/
 
 
  ## Written by Apower
@@ -31,4 +31,4 @@
 
  ## Want to donate?
 
- -Send to Paypal: apowerdev@outlook.com
+ Send to Paypal: apowerdev@outlook.com
